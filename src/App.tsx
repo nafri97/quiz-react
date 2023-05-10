@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 type Question = {
   category: string;
@@ -70,25 +71,27 @@ function Quiz() {
   const question = questions[currentQuestion];
 
   return (
-    <div>
-      <h2>Question {currentQuestion + 1}:</h2>
+    <div className="container">
+      <h2 className="question">Question {currentQuestion + 1}:</h2>
       <h3>{question.question}</h3>
       <ul>
         {question.incorrect_answers.map(answer => (
-          <li key={answer}>
+          <li key={answer} className="answer">
             <button onClick={() => handleAnswer(answer)}>{answer}</button>
           </li>
         ))}
-        <li key={question.correct_answer}>
-          <button onClick={() => handleAnswer(question.correct_answer)}>
-            {question.correct_answer}
-          </button>
+        <li key={question.correct_answer} className="answer">
+        <button
+          onClick={() => handleAnswer(question.correct_answer)}
+        >
+          {question.correct_answer}
+        </button>
         </li>
       </ul>
       {currentQuestion === questions.length - 1 ? (
-        <button onClick={handleFinishQuiz}>Finish Quiz</button>
+        <button className="button" onClick={handleFinishQuiz}>Finish Quiz</button>
       ) : (
-        <button onClick={handleNextQuestion}>Next Question</button>
+        <button className="button" onClick={handleNextQuestion}>Next Question</button>
       )}
     </div>
   );
